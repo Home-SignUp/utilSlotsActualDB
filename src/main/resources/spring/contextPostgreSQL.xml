@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!--@Transaction annotation support -->
+    <tx:annotation-driven transaction-manager="jpaTxnManagerBean" proxy-target-class="true"/>
+
+    <bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${postgres.jdbc.driverClassName}" />
+        <property name="url" value="${postgres.jdbc.url}" />
+        <property name="username" value="${postgres.jdbc.username}" />
+        <property name="password" value="${postgres.jdbc.password}" />
+    </bean>
+
+    <bean id="hbAdapterBean" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="${postgres.hibernate.show_sql}"></property>
+        <property name="generateDdl" value="${postgres.hibernate.generate_ddl}"></property>
+        <property name="databasePlatform" value="${postgres.hibernate.dialect}"></property>
+    </bean>
+
+    <bean id="emfBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceBean"></property>
+        <property name="jpaVendorAdapter" ref="hbAdapterBean"></property>
+    </bean>
+
+    <bean id="jpaTemplateBean" class="org.springframework.orm.jpa.JpaTemplate">
+        <property name="entityManagerFactory" ref="emfBean"></property>
+    </bean>
+
+    <bean id="accountsDaoBean" class="com.win.utility.dao.AccountDao">
+        <property name="template" ref="jpaTemplateBean"></property>
+    </bean>
+
+    <bean id="jpaTxnManagerBean" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emfBean"></property>
+    </bean>
+
+    <bean id="accountServiceBean" class="com.win.utility.service.impl.AccountServiceImpl">
+    </bean>
+</beans>
