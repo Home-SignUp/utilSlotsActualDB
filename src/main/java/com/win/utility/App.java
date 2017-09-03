@@ -12,6 +12,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.List;
 import org.apache.commons.cli.*;
 
+/**
+ * Program arguments: -s ID
+ *
+ * ID, OWNER, BALANCE
+ */
 
 public class App {
 
