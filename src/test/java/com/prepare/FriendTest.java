@@ -80,26 +80,42 @@ public class FriendTest {
         return true;
     }
 
+    /*
+     * Pass all along the children
+     */
     private boolean func(final Friend friend) {
-        Friend currFriend = friend;
-
-        while (currFriend != null) {
-            Iterator<Friend> iFriendToFriend = currFriend.getFriends().iterator();
-
-            while (iFriendToFriend.hasNext()) {
-                Friend friendToFriend = iFriendToFriend.next();
-
-                switch (currFriend.getEmail()) {
-                    case "A":
-                        if (!friendToFriend.getEmail().equals("B")) return false;
-                        break;
-                    case "B":
-                        if (!friendToFriend.getEmail().equals("C")) return false;
-                        break;
+        if (friend!=null){
+            Iterator<Friend> iCurrentFriend = friend.getFriends().iterator();
+            while (iCurrentFriend.hasNext()){
+                Friend currentFriend = iCurrentFriend.next();
+                if (!check(currentFriend)) {
+                    return false;
                 }
+                iCurrentFriend = currentFriend.getFriends().iterator();
             }
-            currFriend = null;
         }
         return true;
     }
+
+    /*
+     * It is case what a condition for Friend have corresponded to its child
+     */
+    boolean check(Friend current) {
+        Iterator<Friend> iFriendToFriend = current.getFriends().iterator();
+
+        while (iFriendToFriend.hasNext()) {
+            Friend friendToFriend = iFriendToFriend.next();
+
+            switch (current.getEmail()) {
+                case "A":
+                    if (!friendToFriend.getEmail().equals("B")) return false;
+                    break;
+                case "B":
+                    if (!friendToFriend.getEmail().equals("C")) return false;
+                    break;
+            }
+        }
+        return true;
+    }
+
 }
