@@ -49,10 +49,10 @@ ArrayList            | O(1) |  O(n)  | O(1) |   O(n)   | O(1) | Array
 LinkedList           | O(1) |  O(1)  | O(n) |   O(n)   | O(1) | Linked List
 CopyOnWriteArrayList | O(n) |  O(n)  | O(1) |   O(n)   | O(1) | Array
 
-List                 | Add  | Add(E, index) | Remove | Iterator.remove() | Iterator.add(E) | Get  | Contains | Next | Data Structure
----------------------|------|---------------|--------|-------------------|-----------------|------|----------|------|---------------
-ArrayList            | O(1) |  O(n)         |  O(n)  | O(n)              | O(n)            | O(1) |   O(n)   | O(1) | Array
-LinkedList           | O(1) |  O(n)         |  O(1)  | O(1)              | O(1)            | O(n) |   O(n)   | O(1) | Linked List
+List                 | Add  | Add(E, index) | Remove | Iterator.remove() | Iterator.add(E) | Get  | Contains | Iterator.next() | Data Structure
+---------------------|------|---------------|--------|-------------------|-----------------|------|----------|-----------------|---------------
+ArrayList            | O(1) |  O(n)         |  O(n)  | O(n)              | O(n)            | O(1) |   O(n)   | O(1)            | Array
+LinkedList           | O(1) |  O(n)         |  O(1)  | O(1)              | O(1)            | O(n) |   O(n)   | O(1)            | Linked List
 
 Set                   |    Add   |  Remove  | Contains |   Next   | Size | Data Structure
 ----------------------|----------|----------|----------|----------|------|-------------------------
