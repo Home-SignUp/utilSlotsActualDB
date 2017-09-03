@@ -49,6 +49,15 @@ ArrayList            | O(1) |  O(n)  | O(1) |   O(n)   | O(1) | Array
 LinkedList           | O(1) |  O(1)  | O(n) |   O(n)   | O(1) | Linked List
 CopyOnWriteArrayList | O(n) |  O(n)  | O(1) |   O(n)   | O(1) | Array
 
+.                 | Arraylist | LinkedList
+------------------|-----------|-----------
+get(index)        |    O(1)   |   O(n)
+add(E)            |    O(n)   |   O(1)
+add(E, index)     |    O(n)   |   O(n)
+remove(index)     |    O(n)   |   O(n)
+Iterator.remove() |    O(n)   |   O(1)
+Iterator.add(E)   |    O(n)   |   O(1)
+
 Set                   |    Add   |  Remove  | Contains |   Next   | Size | Data Structure
 ----------------------|----------|----------|----------|----------|------|-------------------------
 HashSet               | O(1)     | O(1)     | O(1)     | O(h/n)   | O(1) | Hash Table
