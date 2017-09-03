@@ -80,8 +80,8 @@ ConcurrentSkipListSet | O(log n) | O(log n) | O(log n) | O(1)     | O(n) | *Skip
  ------------------------ | -------- | ---- | -------- | ------ | ---- | --------------
 `LinkedList`              | O(1)     | O(1) | O(1)     |  O(1)  | O(1) | *Array*
 `ArrayDequeue`            | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
-`ArrayBlockingQueue`      | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Array*
-`LinkedBlockingQueue`     | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
+ArrayBlockingQueue        | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Array*
+LinkedBlockingQueue       | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
 SynchronousQueue          | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *None!*
 ConcurrentLinkedQueue     | O(1)     | O(1) | O(1)     |  O(n)  | O(n) | *Linked List*
 DelayQueue                | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priority Heap*
@@ -90,9 +90,18 @@ DelayQueue                | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priori
 
 ```
  Самосортирующие структуры |    Add   |   Get    |  Remove  | Contains | ContainsKey |   Next   | Size | Data Structure
- ------------------------- | -------- | -------- | -------- | -------- | ----------- | -------- | ---- | ------------------------
-TreeMap                    |          | O(log n) |          |          | O(log n)    | O(log n) |      | *Red-black tree*
-TreeSet                    | O(log n) |          | O(log n) | O(log n) |             | O(log n) | O(1) | *Red-black tree*
+ ------------------------- | -------- | -------- | -------- | -------- | ----------- | -------- | ---- | --------------
+TreeMap                    |          | O(log n) |          |          | O(log n)    | O(log n) |      | Red-black tree
+TreeSet                    | O(log n) |          | O(log n) | O(log n) |             | O(log n) | O(1) | Red-black tree
+```
+
+```
+ Concurrent           |  Offer   | Peak |   Poll   |    Add   |   Get    |  Remove  | Contains | ContainsKey |   Next   | Size | Data Structure
+ -------------------- | -------- | ---- | -------- | -------- | -------- | -------- | -------- | ----------- | -------- | ---- | --------------
+ConcurrentLinkedQueue | O(1)     | O(1) | O(1)     |          |          | O(n)     |          |             |          | O(n) | Linked List
+ConcurrentHashMap     |          |      |          |          | O(1)     |          |          |   O(1)      | O(h / n) |      | Hash Tables
+ConcurrentSkipListMap |          |      |          |          | O(log n) |          |          |   O(log n)  | O(1)     |      | Skip List
+ConcurrentSkipListSet |          |      |          | O(log n) |          | O(log n) | O(log n) |             | O(1)     | O(n) | Skip List
 ```
 
 ##Структуры данных
