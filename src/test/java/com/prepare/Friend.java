@@ -1,10 +1,7 @@
 package com.prepare;
 
-import org.apache.commons.lang.ArrayUtils;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 
 
 /**
@@ -20,42 +17,23 @@ import java.util.List;
 
 public class Friend {
 
-    public Friend(){
-    }
+    private Collection<Friend> friends = new ArrayList<>();
+    private String email;
 
     public Friend(String email){
         this.email = email;
     }
 
-    private Collection<Friend> friends;
-    private String email;
+    public void addFriends(Friend friend) {
+        this.friends.add(friend);
+    }
 
     public Collection<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(Collection<Friend> friends) {
-        this.friends = friends;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public static void main(String[] args) {
-        // https://www.programcreek.com/2013/09/top-10-questions-for-java-collections
-        // http://info.javarush.ru/translation/2014/06/26/Топ-10-вопросов-о-коллекциях-в-Java.html
-        int[] array = {1,2,3,4,5};
-        List list = Arrays.asList(ArrayUtils.toObject(array));
-        Iterator<Integer> itr = list.iterator();
-        while(itr.hasNext()) {
-            int i = itr.next();
-            System.out.print( i + " " );
-        }
     }
 
 }

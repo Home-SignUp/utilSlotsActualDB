@@ -3,6 +3,8 @@ package com.prepare;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,10 +20,8 @@ import java.util.List;
 
 public class SynchronizedListTutor {
 
-    static String [] langs =
-            {"SQL", "PHP", "XML", "Java", "Scala", "Python", "JavaScript", "ActionScript", "Clojure", "Groovy", "Ruby", "C++"};
-    List<String> randomLangs =
-            new ArrayList<>();
+    static String [] langs = {"SQL", "PHP", "XML", "Java", "Scala", "Python", "JavaScript", "ActionScript", "Clojure", "Groovy", "Ruby", "C++"};
+    List<String> randomLangs = new ArrayList<>();
 
     public String getRandomLangs() {
         int index = (int)(Math.random()*langs.length);
@@ -43,15 +43,15 @@ public class SynchronizedListTutor {
         }
     }
 
-//    public void print(Collection<?> c) {
-//        StringBuilder builder = new StringBuilder();
-//        Iterator<?>  iterator = c.iterator();
-//        while(iterator.hasNext()) {
-//            builder.append(iterator.next());
-//            builder.append(" ");
-//        }
-//        System.out.println(builder.toString());
-//    }
+    public void print(Collection<?> c) {
+        StringBuilder builder = new StringBuilder();
+        Iterator<?> iterator = c.iterator();
+        while(iterator.hasNext()) {
+            builder.append(iterator.next());
+            builder.append(" ");
+        }
+        System.out.println(builder.toString());
+    }
 
     @Test
     public void testThread() {
