@@ -49,7 +49,7 @@
  ------------------- | ---- | ----- | -------- | ------- | --------------
 `ArrayList`          | O(1) |  O(1) | O(n)     |  O(n)  | *Array*
 `LinkedList`         | O(1) |  O(n) | O(n)     |  O(1)  | *Linked List*
-CopyOnWriteArrayList | O(n) |  O(1) | O(n)     |  O(n)  | *Array*
+CopyOnWriteArrayList | O(n) |  O(1) | O(n)     |  O(n)  | *Потокобезопасный аналог ArrayList*
 
  Iterable            | Add  | Next | Remove | Data Structure
  ------------------- |------|------|--------|---------------
@@ -61,10 +61,10 @@ ListIterator         | O(1) | O(1) | O(n)   | *List Iterator*
 LinkedHashMap         | O(1)     |   O(1)      | O(1)     | *Hash Table + Linked List*
 `EnumMap`             | O(1)     |   O(1)      | O(1)     | *Array*
 `HashMap`             | O(1)     |   O(1)      | O(h / n) | *Hash Table*
-`ConcurrentHashMap`   | O(1)     |   O(1)      | O(h / n) | *Hash Tables*
+`ConcurrentHashMap`   | O(1)     |   O(1)      | O(h / n) | *Аналог Hash Tables, данные представлены в виде сегментов, разбитых по hash'ам ключей*
 IdentityHashMap       | O(1)     |   O(1)      | O(h / n) | *Array*
 WeakHashMap           | O(1)     |   O(1)      | O(h / n) | *Hash Table*
-ConcurrentSkipListMap | O(log n) |   O(log n)  | O(1)     | *Skip List*
+ConcurrentSkipListMap | O(log n) |   O(log n)  | O(1)     | *Аналог TreeMap с поддержкой многопоточности*
 `TreeMap`             | O(log n) |   O(log n)  | O(log n) | *Red-black tree*
 
  Set                  |    Add   |  Remove  | Contains |   Next   | Size | Data Structure
@@ -73,7 +73,7 @@ LinkedHashSet         | O(1)     | O(1)     | O(1)     | O(1)     | O(1) | *Hash
 `EnumSet`             | O(1)     | O(1)     | O(1)     | O(1)     | O(1) | *Bit Vector*
 `HashSet`             | O(1)     | O(1)     | O(1)     | O(h / n) | O(1) | *Hash Table*
 CopyOnWriteArraySet   | O(n)     | O(n)     | O(n)     | O(1)     | O(1) | *Array*
-ConcurrentSkipListSet | O(log n) | O(log n) | O(log n) | O(1)     | O(n) | *Skip List*
+ConcurrentSkipListSet | O(log n) | O(log n) | O(log n) | O(1)     | O(n) | *Имплементация Set интерфейса*
 `TreeSet`             | O(log n) | O(log n) | O(log n) | O(log n) | O(1) | *Red-black tree*
 
  Queue                    |  Offer   | Peak |   Poll   | Remove | Size | Data Structure
@@ -82,7 +82,7 @@ ConcurrentSkipListSet | O(log n) | O(log n) | O(log n) | O(1)     | O(n) | *Skip
 `ArrayDequeue`            | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
 ArrayBlockingQueue        | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Array*
 LinkedBlockingQueue       | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
-SynchronousQueue          | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *None!*
+SynchronousQueue          | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Аналог Linked List, синхронно добавляет / удаляет элементы (использует алгоритм для быстрой переборки элементов)*
 ConcurrentLinkedQueue     | O(1)     | O(1) | O(1)     |  O(n)  | O(n) | *Linked List*
 DelayQueue                | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priority Heap*
 `PriorityQueue`           | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priority Heap*
@@ -98,10 +98,28 @@ TreeSet                    | O(log n) |          | O(log n) | O(log n) |        
 ```
  Concurrent           |  Offer   | Peak |   Poll   |    Add   |   Get    |  Remove  | Contains | ContainsKey |   Next   | Size | Data Structure
  -------------------- | -------- | ---- | -------- | -------- | -------- | -------- | -------- | ----------- | -------- | ---- | --------------
-ConcurrentLinkedQueue | O(1)     | O(1) | O(1)     |          |          | O(n)     |          |             |          | O(n) | Linked List
-ConcurrentHashMap     |          |      |          |          | O(1)     |          |          |   O(1)      | O(h / n) |      | Hash Tables
-ConcurrentSkipListMap |          |      |          |          | O(log n) |          |          |   O(log n)  | O(1)     |      | Skip List
-ConcurrentSkipListSet |          |      |          | O(log n) |          | O(log n) | O(log n) |             | O(1)     | O(n) | Skip List
+ConcurrentLinkedQueue | O(1)     | O(1) | O(1)     |          |          | O(n)     |          |             |          | O(n) | Аналог Linked List, синхронно добавляет / удаляет элементы (использует алгоритм для быстрой переборки элементов)
+ConcurrentHashMap     |          |      |          |          | O(1)     |          |          |   O(1)      | O(h / n) |      | Аналог Hash Tables, данные представлены в виде сегментов, разбитых по hash'ам ключей
+ConcurrentSkipListMap |          |      |          |          | O(log n) |          |          |   O(log n)  | O(1)     |      | Аналог TreeMap с поддержкой многопоточности
+ConcurrentSkipListSet |          |      |          | O(log n) |          | O(log n) | O(log n) |             | O(1)     | O(n) | Имплементация Set интерфейса
+```
+
+```javascript
+/**
+ *
+ * CopyOnWrite коллекции:
+ * - CopyOnWriteArrayList<E> — Потокобезопасный аналог ArrayList
+ * - CopyOnWriteArraySet<E> — Имплементация интерфейса Set
+ * Улучшенные реализации HashMap, TreeMap с лучшей поддержкой многопоточности и масштабируемости:
+ * - ConcurrentMap<K, V> — Интерфейс, расширяющий Map
+ * - ConcurrentHashMap<K, V> — В отличие от Hashtable и блоков synhronized на HashMap, данные представлены в виде сегментов, разбитых по hash'ам ключей
+ * - ConcurrentNavigableMap<K,V> — Расширяет интерфейс NavigableMap и вынуждает использовать ConcurrentNavigableMap объекты в качестве возвращаемых значений
+ * - ConcurrentSkipListMap<K, V> — Является аналогом TreeMap с поддержкой многопоточности
+ * - ConcurrentSkipListSet<E> — Имплементация Set интерфейса
+ *
+ * - ConcurrentLinkedQueue — синхронно добавляет / удаляет элементы (использует алгоритм для быстрой переборки элементов)
+ * - ConcurrentLinkedDequeue — (такой же как и 'ConcurrentLinkedQueue') работает в двух-стороннем порядке FIFO
+ */
 ```
 
 ##Структуры данных
