@@ -81,7 +81,7 @@ public class FriendTest {
     }
 
     /*
-     * Pass all along the children
+     * Pass for all along its children
      */
     private boolean func(final Friend friend) {
         if (friend!=null){
