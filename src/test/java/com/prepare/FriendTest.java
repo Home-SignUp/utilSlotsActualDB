@@ -4,6 +4,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -58,6 +59,49 @@ public class FriendTest {
         friendA.addFriends(friendB);
 
         System.out.println( "res = " + func(friendA) );
+    }
+
+    /*
+     * Add  |  Get  |  Contains | Remove | Next
+     */
+    @Test
+    public void test() {
+        // Add  |  Get  |  Contains | Remove
+        List<Integer> al = new ArrayList<>();
+        al.add(100);
+        al.add(200);
+        al.get(0);
+        al.contains(100);
+        al.remove(0);
+
+        List<Integer> ll = new LinkedList<>();
+        ll.add(100);
+        ll.add(200);
+        ll.get(0);
+        ll.contains(100);
+        ll.remove(0);
+
+        List cwal = new CopyOnWriteArrayList<>();
+        cwal.add(100);
+        cwal.add(200);
+        cwal.get(0);
+        cwal.contains(100);
+        cwal.remove(0);
+
+        //  Next | Remove
+        Iterator<Integer> iAl = al.iterator();
+        iAl.next();
+        iAl.remove();
+
+        Iterator<Integer> iLl = ll.iterator();
+        iLl.next();
+        iLl.remove();
+
+        // Add  |  Next | Remove
+        ListIterator liAl = al.listIterator();
+//        liAl.next();
+//        liAl.add(300);
+//        liAl.remove();
     }
 
     private boolean func(Collection<Friend> friends){

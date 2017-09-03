@@ -40,19 +40,29 @@
 
 ![График роста O — большое](195e1f6a1379554ca9025338301a78ed.png)
 
-[Большое 'O' - производительность для общих функций некоторых коллекций](https://gist.github.com/psayre23/c30a821239f4818b0709)
-
+[Большое 'O' - производительность для общих функций некоторых коллекций](https://gist.github.com/psayre23/c30a821239f4818b0709) | https://www.programcreek.com/2013/09/top-10-questions-for-java-collections
 ---
-List                 | Add  | Remove | Get  | Contains | Next | Data Structure
----------------------|------|--------|------|----------|------|---------------
-ArrayList            | O(1) |  O(n)  | O(1) |   O(n)   | O(1) | Array
-LinkedList           | O(1) |  O(1)  | O(n) |   O(n)   | O(1) | Linked List
-CopyOnWriteArrayList | O(n) |  O(n)  | O(1) |   O(n)   | O(1) | Array
+List                 | Add  |  Get  | Contains |  Remove | Data Structure
+---------------------|------|-------|----------|---------|---------------
+ArrayList            | O(1) |  O(1) | O(n)     |  O(n)  | Array
+LinkedList           | O(1) |  O(n) | O(n)     |  O(1)  | Linked List
+CopyOnWriteArrayList | O(n) |  O(1) | O(n)     |  O(n)  | Array
 
-List                 | Add  | Add(E, index) | Remove | Iterator.remove() | Iterator.add(E) | Get  | Contains | Iterator.next() | Data Structure
----------------------|------|---------------|--------|-------------------|-----------------|------|----------|-----------------|---------------
-ArrayList            | O(1) |  O(n)         |  O(n)  | O(n)              | O(n)            | O(1) |   O(n)   | O(1)            | Array
-LinkedList           | O(1) |  O(n)         |  O(1)  | O(1)              | O(1)            | O(n) |   O(n)   | O(1)            | Linked List
+Iterable             | Add  | Next | Remove | Data Structure
+---------------------|------|------|--------|---------------
+Iterator             |      | O(1) | O(n)   | Iterator
+ListIterator         | O(1) | O(1) | O(n)   | List Iterator
+
+Map                   |   Get    | ContainsKey |   Next   | Data Structure
+----------------------|----------|-------------|----------|-------------------------
+HashMap               | O(1)     |   O(1)      | O(h / n) | Hash Table
+LinkedHashMap         | O(1)     |   O(1)      | O(1)     | Hash Table + Linked List
+IdentityHashMap       | O(1)     |   O(1)      | O(h / n) | Array
+WeakHashMap           | O(1)     |   O(1)      | O(h / n) | Hash Table
+EnumMap               | O(1)     |   O(1)      | O(1)     | Array
+TreeMap               | O(log n) |   O(log n)  | O(log n) | Red-black tree
+ConcurrentHashMap     | O(1)     |   O(1)      | O(h / n) | Hash Tables
+ConcurrentSkipListMap | O(log n) |   O(log n)  | O(1)     | Skip List
 
 Set                   |    Add   |  Remove  | Contains |   Next   | Size | Data Structure
 ----------------------|----------|----------|----------|----------|------|-------------------------
@@ -75,28 +85,6 @@ SynchronousQueue        | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | None!
 DelayQueue              | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | Priority Heap
 LinkedBlockingQueue     | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | Linked List
 
-Map                   |   Get    | ContainsKey |   Next   | Data Structure
-----------------------|----------|-------------|----------|-------------------------
-HashMap               | O(1)     |   O(1)      | O(h / n) | Hash Table
-LinkedHashMap         | O(1)     |   O(1)      | O(1)     | Hash Table + Linked List
-IdentityHashMap       | O(1)     |   O(1)      | O(h / n) | Array
-WeakHashMap           | O(1)     |   O(1)      | O(h / n) | Hash Table
-EnumMap               | O(1)     |   O(1)      | O(1)     | Array
-TreeMap               | O(log n) |   O(log n)  | O(log n) | Red-black tree
-ConcurrentHashMap     | O(1)     |   O(1)      | O(h / n) | Hash Tables
-ConcurrentSkipListMap | O(log n) | O(log n) | O(1) | Skip List
-
-https://www.programcreek.com/2013/09/top-10-questions-for-java-collections
----
-List              | Arraylist | LinkedList
-------------------|-----------|-----------
-get(index)        |    O(1)   |   O(n)
-add(E)            |    O(n)   |   O(1)
-add(E, index)     |    O(n)   |   O(n)
-remove(index)     |    O(n)   |   O(n)
-Iterator.remove() |    O(n)   |   O(1)
-Iterator.add(E)   |    O(n)   |   O(1)
-
 ##Структуры данных
 ![Структуры данных](9a5f72788d9e0e5ac0d0e585e3b3632f.png)
 
@@ -111,8 +99,11 @@ Iterator.add(E)   |    O(n)   |   O(1)
 
 
 
-
-
+простые списки Array, Linked
+Iterator
+Хеш-таблицы
+Самосортирующие структуры
+Очередь Queue
 
 
 
