@@ -43,7 +43,7 @@
 - https://www.programcreek.com/2013/09/top-10-questions-for-java-collections
 - https://gist.github.com/psayre23/c30a821239f4818b0709
 
-[Большое 'O' - производительность для общих функций некоторых коллекций](https://gist.github.com/psayre23/c30a821239f4818b0709)
+[Большое 'O' - производительность или затраты времени для общих функций некоторых коллекций](https://gist.github.com/psayre23/c30a821239f4818b0709)
 ---
  List                | Add  |  Get  | Contains |  Remove | Data Structure
  ------------------- | ---- | ----- | -------- | ------- | --------------
