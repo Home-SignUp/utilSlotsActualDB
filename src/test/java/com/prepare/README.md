@@ -79,7 +79,7 @@ ConcurrentSkipListSet | O(log n) | O(log n) | O(log n) | O(1)     | O(n) | *Им
  Queue                    |  Offer   | Peak |   Poll   | Remove | Size | Структура данных
  ------------------------ | -------- | ---- | -------- | ------ | ---- | ----------------
 `LinkedList`              | O(1)     | O(1) | O(1)     |  O(1)  | O(1) | *Array*
-`ArrayDequeue`            | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
+ArrayDequeue              | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
 ArrayBlockingQueue        | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Array*
 LinkedBlockingQueue       | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Linked List*
 SynchronousQueue          | O(1)     | O(1) | O(1)     |  O(n)  | O(1) | *Аналог Linked List, синхронно добавляет / удаляет элементы (использует алгоритм для быстрой переборки элементов)*
