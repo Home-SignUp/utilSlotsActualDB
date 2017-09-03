@@ -136,12 +136,6 @@ ConcurrentSkipListSet |          |      |          | O(log n) |          | O(log
 
 
 
-простые списки Array, Linked
-Iterator
-Хеш-таблицы
-Самосортирующие структуры
-Очередь Queue
-
 
 
 
