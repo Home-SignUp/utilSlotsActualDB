@@ -88,6 +88,13 @@ DelayQueue                | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priori
 `PriorityQueue`           | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priority Heap*
 `PriorirityBlockingQueue` | O(log n) | O(1) | O(log n) |  O(n)  | O(1) | *Priority Heap*
 
+```
+ Самосортирующие структуры |    Add   |   Get    |  Remove  | Contains | ContainsKey |   Next   | Size | Data Structure
+ ------------------------- | -------- | -------- | -------- | -------- | ----------- | -------- | ---- | ------------------------
+TreeMap                    |          | O(log n) |          |          | O(log n)    | O(log n) |      | *Red-black tree*
+TreeSet                    | O(log n) |          | O(log n) | O(log n) |             | O(log n) | O(1) | *Red-black tree*
+```
+
 ##Структуры данных
 ![Структуры данных](9a5f72788d9e0e5ac0d0e585e3b3632f.png)
 
