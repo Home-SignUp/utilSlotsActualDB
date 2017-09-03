@@ -81,7 +81,7 @@ public class FriendTest {
     }
 
     /*
-     * Pass for all along its children
+     * #2-2. Pass for all along its children
      */
     private boolean func(final Friend friend) {
         if (friend!=null){
@@ -98,7 +98,7 @@ public class FriendTest {
     }
 
     /*
-     * It is case what a condition for Friend have corresponded to its child
+     * #1-2. It is case what a condition for Friend have corresponded to its child
      */
     boolean check(Friend current) {
         Iterator<Friend> iFriendToFriend = current.getFriends().iterator();
