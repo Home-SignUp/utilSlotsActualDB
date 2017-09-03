@@ -45,11 +45,11 @@
 
 [Большое 'O' - производительность или затраты времени для общих функций некоторых коллекций](https://gist.github.com/psayre23/c30a821239f4818b0709)
 ---
- List                | Add  |  Get  | Contains |  Remove | Data Structure
- ------------------- | ---- | ----- | -------- | ------- | --------------
-`ArrayList`          | O(1) |  O(1) | O(n)     |  O(n)  | *Array*
-`LinkedList`         | O(1) |  O(n) | O(n)     |  O(1)  | *Linked List*
-CopyOnWriteArrayList | O(n) |  O(1) | O(n)     |  O(n)  | *Потокобезопасный аналог ArrayList*
+ List                | Add  |  Get  | Remove | Contains | Data Structure
+ ------------------- | ---- | ----- | ------ | -------- | --------------
+`ArrayList`          | O(1) |  O(1) |  O(n)  | O(n)     | *Array*
+CopyOnWriteArrayList | O(n) |  O(1) |  O(n)  | O(n)     | *Потокобезопасный аналог ArrayList*
+`LinkedList`         | O(1) |  O(n) |  O(1)  | O(n)     | *Linked List*
 
  Iterable            | Add  | Next | Remove | Data Structure
  ------------------- |------|------|--------|---------------
