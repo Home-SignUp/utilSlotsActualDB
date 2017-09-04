@@ -51,10 +51,10 @@ public class Fruit implements Comparable<Fruit> {
      * С помощью интерфейса 'Comparable' можно устанавливать (дефолтную) сортировку по умолчанию!
      */
     @Override
-    public int compareTo(Fruit fruit) {
-        if (id > fruit.id)
+    public int compareTo(Fruit o) {
+        if (o.id < id)
             return 1;
-        else if (id < fruit.id)
+        else if (id < o.id)
             return -1;
         return 0;
     }
