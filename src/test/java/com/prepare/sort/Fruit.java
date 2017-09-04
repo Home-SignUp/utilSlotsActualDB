@@ -65,7 +65,7 @@ public class Fruit implements Comparable<Fruit> {
     public static final Comparator<Fruit> QuantityComparator = new Comparator<Fruit>() {
         @Override
         public int compare(Fruit o1, Fruit o2) {
-            if (o1.quantity > o2.quantity)
+            if (o1.quantity > o2.getQuantity())
                 return 1;
             else if (o1.quantity < o2.quantity)
                 return -1;
@@ -76,11 +76,8 @@ public class Fruit implements Comparable<Fruit> {
     public static final Comparator<Fruit> NameComparator = new Comparator<Fruit>() {
         @Override
         public int compare(Fruit o1, Fruit o2) {
-            String name1 = o1.getName();
-            String name2 = o2.getName();
-
-            return name1.compareTo(name2); // ascending order
-//            return name2.compareTo(name1); // descending order
+            return o1.getName().compareTo(o2.getName()); // ascending order
+//            return o2.getName().compareTo(o1.getName()); // descending order
         }
     };
 }
