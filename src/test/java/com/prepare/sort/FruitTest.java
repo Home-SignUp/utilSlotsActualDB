@@ -7,6 +7,7 @@ import java.util.*;
 
 /**
  * @see http://echuprina.blogspot.com/2012/02/comparable-comparator.html
+ *      https://www.mkyong.com/java8/java-8-lambda-comparator-example/
  *
  * @see https://www.mkyong.com/java/java-object-sorting-example-comparable-and-comparator
  *      https://javadevblog.com/primer-sortirovki-s-pomoshh-yu-java-comparable-i-comparator.html
