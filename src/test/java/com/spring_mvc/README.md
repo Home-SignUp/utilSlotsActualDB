@@ -97,3 +97,159 @@ public class StatsInterceptor extends HandlerInterceptorAdapter {
 ```
 
 
+Методы handleRequest..:
+
+```java
+@Controller
+@RequestMapping("/")
+public class MainController {
+	@RequestMapping(value="user/list/id/{id}", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String userList(Model ui, @PathVariable("id") Long id)
+	{
+		ui.addAttribute("contacts", "Ce contacts"+id.toString());
+		
+		return "user/list";
+	}
+	
+	@RequestMapping(value="user/list/id/{id}", method=RequestMethod.GET, produces="text/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public String userListJson(Model ui, @PathVariable("id") Long id)
+	{
+		return "{id:" + id.toString() + '}';
+	}
+
+    /**
+     * User u - объект пользователя. Параметры POST-запроса будут сконвертированы в объект пользователя.
+     * BindingResult br - содержит результаты конвертации параметров запроса в объект пользователя
+     * Model ui - объект модели
+     */
+    @RequestMapping(value="user/list/form", method=RequestMethod.POST)
+//    public String userListPost(@ModelAttribute("user") User u, BindingResult br,  Model ui) // явно указываем с помощью аннотации
+    public String userListPost(User u, BindingResult br,  Model ui) // Spring автоматически найдет и сконвертированы в объект
+    {
+        System.out.println(br.toString());
+        System.out.println(u.toString());
+            
+        ui.addAttribute("user", u);
+            
+        return "user/list";
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Group.class, "group", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                Group g = new Group(Long.valueOf(text));
+                
+                setValue(g);
+            }
+        });
+    }
+
+    /**
+     * Запрет на редактирование отдельных элементов формы
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setAllowedFields(new String[]{"field*", "subfield1"});
+    }
+}
+```
+
+```java
+@RequestMapping(value = "/", method = RequestMethod.GET)
+@ResponseBody
+public ResponseEntity<MyClass> get(){
+    // ...
+    retutn new ResponseEntity<>(myClass, HttpStatus.OK);
+}
+```
+
+* `@RequestMapping(value="user/list/id/{id}", method=RequestMethod.GET, produces="text/json")` — реализация интерфейса HandlerMapping в Spring MVC реализуется классом RequestMappingHandlerMapping
+* `@RequestParam("name")` — String namе говорит о том, что в обработчик получает поле name формы которую обрабатывает
+* `@PathVariable("id")` — Long id указывает, что в метод необходимо передать параметр id типа Long, который необходимо взять из пути (шаблон URL и расположение параметра id уже описание в @RequestMapping(value="user/list/id/{id}"...)
+
+* `Model`, `ModelAndView`, `@ModelAttribute` — это данные которые контроллер передает на JSP-страницу 'view' (предварительно данные добавляются в эту модель с помощью '.addAttribute(..)') и в результате контроллер возвращает название JSP-страницы (String)
+                                                ('Model' — передается как параметр в веб-метод, а 'ModelAndView' — создается внутри теля веб-метода)
+                                                (в этом случае веб-метод возвращает набор параметров-аттрибутов)
+* `@ResponseBody` — означает, что результатом работы метода (возвращаемым значением) является тело ответа
+                     (в этом случае веб-метод возвращает json...)
+* `@ResponseEntity<..>` — конвертирует данные из структуры класса в json
+                           (в этом случае веб-метод возвращает класс-объект как json...)
+* `BindingResult` — содержит результаты конвертации параметров запроса в объект
+* `@InitBinder` — указывает, что данный метод проводить настройку биндинга и преобразования
+                   (WebDataBinder binder - собственно объект биндера, регистрируем специфичный преобразователь в объект класса...с использованием расширения класса PropertyEditorSupport)
+
+* `@ResponseStatus(HttpStatus.OK)` — будет возвращаться HTTP-статус 200 OK
+
+
+
+Обработка исключений
+---
+Вызов данных обработчиков осуществляется в следующих случаях:
+* `error500` — произошла исключение и оно не перехвачено
+* `error403` — подключён Spring Security и сгенерировано исключение `AccessDeniedException`, которое не было перехвачено
+
+```java
+/**
+ * Например, реализуем исключения ResourceNotFoundException с отображением соответствующей страницы
+ * Объявим исключение и добавим аннотацию, соответствующую коду 404:
+ */
+@ResponseStatus(value=HttpStatus.NOT_FOUND)
+public class NotFoundException extends RuntimeException {
+	public NotFoundException(String message){
+		super(message);
+	}
+}
+
+/**
+ * В методе контроллера добавим некоторую проверку и генерацию исключения:
+ */
+@RequestMapping(value="/some-page", method=RequestMethod.GET)
+public String somePage(Model ui)
+{
+	if (!this.getResource()) {
+		throw new NotFoundException("Not found");
+	} else {
+		// ...
+		return "resources/view";
+	}
+}
+```
+
+```xml
+<!-- Теперь в дескрипторе развёртываня web.xml добавим описание ошибки 404 -->
+<error-page>
+	<error-code>404</error-code>
+	<location>/WEB-INF/views/error404.jsp</location>
+</error-page>
+```
+
+и файл со страницей 404:
+`/WEB-INF/views/errorPages/error404.jsp`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
