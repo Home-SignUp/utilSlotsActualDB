@@ -1,5 +1,8 @@
 [Markdown support](https://daringfireball.net/projects/markdown/syntax)
 
+[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) ([+](http://eax.me/intellij-idea-hotkeys))
+
+
 ### [Java Collections Framework 2](https://jsehelper.blogspot.com/2016/01/java-collections-framework-2.html)
 
 ```
