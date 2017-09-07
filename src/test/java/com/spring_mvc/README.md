@@ -12,6 +12,9 @@
 * [Interceptor — перехват запросов в Spring MVC](http://www.seostella.com/ru/article/2012/04/27/interceptor-perehvat-zaprosov-v-spring-mvc.html)
 * http://javastudy.ru/spring-mvc/spring-mvc-handler-mapping
 * [Что такое Spring Interceptor?](http://o7planning.org/ru/11229/spring-mvc-interceptors-tutorial)
+* [Spring MVC/Security, REST, Hibernate, Liquibase запускаем в две строки](https://habrahabr.ru/post/271719)
+* [Руководство по Spring. Интерфейс BeanPostProcessor](http://proselyte.net/tutorials/spring-tutorial-full-version/postbeanprocessor-interface)
+* https://www.linux.org.ru/forum/web-development/11762100
 
 
 ```java
@@ -32,6 +35,8 @@ public ModelAndView main() {
 ![DispatcherServlet](DispatcherServlet.png)
 
 ![4764724](4764724.png)
+
+![4ecc2ab5c8c2ce97ebb07c1d43453cc9](4ecc2ab5c8c2ce97ebb07c1d43453cc9.jpg)
 
 ```text
 Spring Interceptor:
@@ -218,6 +223,18 @@ public String somePage(Model ui)
 		return "resources/view";
 	}
 }
+
+
+/**
+ * Другой способ реализации эксепшинов..:
+ */
+@ExceptionHandler(RuntimeException.class)
+@ResponseBody
+@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+public String handleException(RuntimeException ex) {
+    logger.error(ex.getMessage(), ex);
+    return ex.getMessage();
+}
 ```
 
 ```xml
@@ -232,15 +249,30 @@ public String somePage(Model ui)
 `/WEB-INF/views/errorPages/error404.jsp`
 
 
+Интерфейс BeanPostProcessor имеет всего 2-а метода:
+---
+1. `postProcessBeforeInitialization`
+2. `postProcessAfterInitialization`
+
+Они позволяют разработчику самому `имплементировать некоторые методы` бинов перед инициализацией и после уничтожения экземпляров бина.
+
+```text
+Spring IoC создаёт экземпляр бина, а затем BeanPostProcessor с ним работает.
+ApplicationContext автоматически обнаруживает любые бины, с реализацией BeanPostProcessor и помечает их как “post-processors” для того, чтобы создать их определённым способом.
+```
 
 
+Bean в Spring-е не сможет быть проиннициализированный:
+---
+Инжектить конструктор — глупости. Гарантированные проблемы с закольцованными зависимостями, которые рано или поздно появятся.
+Инжектить лучше всего сеттеры, но на первое время и текущее решение очень даже ничего.
 
+Спринг/EE работают так: есть контейнер (ApplicationContext), который разок проходит по конфигу и создает все объекты, а потом прописывает зависимости. Например, в конфиге видит @Autowired DSLContext dsl; ищет в созданных объектах этот самый DSLConfig и присваивает его нужной переменной.
+Если ты просишь контекст: а отдай-ка мне объект UserSrv, то он тебе и возвращает созданный-проинициализированный UserSrv.
+А если ты вручную командуешь UserSrv userSrv = new UserSrv(), то получаешь голый объект. Оператор new не знает, откуда брать переменную DSLContext dsl, она и будет null-ом.
+(Аннотация здесь совсем никак не влияет — это то же самое, что xml-ный конфиг, который где-то лежит и никого не трогает. Контейнер знает, что и где искать, и сможет сделать всю работу, а «базовая» Java об этом не в курсе, так что null и выходит)
 
-
-
-
-
-
+В спринговом контексте бины с непроинициализированными обязательными сетерами один черт не создадутся
 
 
 
