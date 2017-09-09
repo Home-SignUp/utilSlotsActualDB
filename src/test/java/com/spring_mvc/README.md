@@ -15,7 +15,8 @@
 * [Spring MVC/Security, REST, Hibernate, Liquibase запускаем в две строки](https://habrahabr.ru/post/271719)
 * [Руководство по Spring. Интерфейс BeanPostProcessor](http://proselyte.net/tutorials/spring-tutorial-full-version/postbeanprocessor-interface)
 * https://www.linux.org.ru/forum/web-development/11762100
-
+* [@RequestHeader](https://github.com/Home-GWT/TopLinkExample/blob/master/src/com/voituk/jpaexample/JPAExample.java#L1695)
+* [Жизненный цикл @SessionAttributes](https://github.com/Home-GWT/TopLinkExample/blob/master/src/com/voituk/jpaexample/JPAExample.java#L1794)
 
 ```java
 /**
