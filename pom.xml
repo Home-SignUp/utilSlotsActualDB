@@ -12,6 +12,7 @@
 
     <properties>
         <java.version>1.7</java.version>
+        <!--<java.version>1.8</java.version>-->
         <spring.mvc>4.0.3.RELEASE</spring.mvc>
         <spring.data>1.3.4.RELEASE</spring.data>
         <javax.servlet>3.0.1</javax.servlet>
