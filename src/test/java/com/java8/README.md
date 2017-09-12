@@ -3,7 +3,7 @@
 [Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) ([+](http://eax.me/intellij-idea-hotkeys))
 
 
-[Java 8 Optional Example](https://examples.javacodegeeks.com/core-java/util/optional/java-8-optional-example)
+[(Java 8) Optional — избавьтесь от null-проверок](https://examples.javacodegeeks.com/core-java/util/optional/java-8-optional-example)
 ---
      Optional — это контейнер объекта, который может содержать или не содержать ненулевое значение.
                  Класс Optional призванный помочь разработчикам в обработке NullPointerException.
