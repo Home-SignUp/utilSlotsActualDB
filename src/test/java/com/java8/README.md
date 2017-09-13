@@ -32,4 +32,30 @@ Optional:
 * https://habrahabr.ru/post/225641
 * https://habrahabr.ru/post/256057
 
+[Что Java 8 нам готовит](https://habrahabr.ru/post/203026)
+---
+Stream:
+
+    ПРОМЕЖУТОЧНЫЕ МЕТОДЫ (возвращают stream)
+    --------------------[ объектные ]
+     1. stream() — создает стрим
+     2. filter(<FunctionalInterface>) — условие по которому выполняется поиск (проверка) объекта
+     3. map(<FunctionalInterface>) — преобразовывает данных из одного типа потока в другой (например из 'Stream' в 'Collection')
+     4. mapToInt(<FunctionalInterface>) — тоже самое что и 'map', только работает с числовым значением и имеет специальные арфиметичнские методы (типа 'sum()'...)
+        mapToLong, mapToFloat, ... 
+     5. flatMap() — 
+     6. sorted() — сортирует
+      
+    ТЕРМИНАЛЬНЫЕ МЕТОДЫ
+    -------------------[ объектные ]
+     7. sum() — возвращает сумму всех элементов
+        min(), max(), average(), anyMatch(), allMatch(), findFirst()
+     8. <VOID> forEach(..) — проходит по списку выводит на печать значение всех объектов
+     9. orElse(..) — возвращает какое-либо значение объекта либо (в случае отсутствия значения) значение по умолчанию 
+
+* https://habrahabr.ru/post/256057
+* https://ru.stackoverflow.com/questions/561224/как-решить-задачу-с-помощью-stream-api
+
+    
+
 
