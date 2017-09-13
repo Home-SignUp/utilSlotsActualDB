@@ -46,7 +46,7 @@ executor.submit(() -> {
 try {
     System.out.println("attempt to shutdown executor");
     executor.shutdown();
-    executor.awaitTermination(5, TimeUnit.SECONDS); // Исполнитель пытается завершить работу, ожидая завершения запущенных задач в течение определенного времени (5 секунд)
+    executor.awaitTermination(5, TimeUnit.SECONDS); // Исполнитель пытается завершить работу, ожидая завершения запущенных задач в течение 5 секунд
 } catch (InterruptedException e) {
     System.err.println("tasks interrupted");
 } finally {
