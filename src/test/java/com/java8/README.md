@@ -52,7 +52,7 @@ Stream:
      7. sum() — выполняет арифметические операции и возвращает сумму всех элементов
         min(), max(), average(), anyMatch(), allMatch(), findFirst() — тоже что и 'sum()' выполняет арифметические операции...  
      8. collect(<Collectors>) — превращает стрим в кокнретную коллекцию (например: List, Map, Set...) и возвращает коллекцию
-     9. <VOID> forEach(<FunctionalInterface>) — проходит по списку выводит на печать значение всех объектов
+     9. <VOID> forEach(<FunctionalInterface>) — выводит на печать в цикле значение всех элементов стрима...
 
 * https://habrahabr.ru/post/256057
 * https://ru.stackoverflow.com/questions/561224/как-решить-задачу-с-помощью-stream-api
