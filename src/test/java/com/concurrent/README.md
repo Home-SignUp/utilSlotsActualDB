@@ -20,3 +20,48 @@ http://please.noroutine.me/2011/08/atomic.html
 3. [Атомарные переменные и конкурентные таблицы](https://tproger.ru/translations/java8-concurrency-tutorial-3)
 
 
+Работать с потоками напрямую неудобно и чревато ошибками. Поэтому в 2004 году в Java 5 добавили Concurrency API `java.util.concurrent`
+
+Исполнители
+---
+
+    `Executors` — (класс) предоставляет фабричные методы для создания сервисов исполнителей.
+    `ExecutorService` — (интерфейс) сервис исполнителей, выполняют задачи асинхронно и используют пул потоков (так что нам не надо создавать их вручную).
+    Все потоки из пула будут использованы повторно после выполнения задачи (это одна из самых важных частей Concurrency API)... 
+    Но есть важное отличие — он никогда не остановится, поэтому работу исполнителей надо завершать явно:
+    shutdown() — ждет завершения запущенных задач
+    shutdownNow() — останавливает исполнитель немедленно
+
+```java
+ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.submit(() -> {
+    String threadName = Thread.currentThread().getName();
+    System.out.println("Hello " + threadName);
+});
+ 
+// => Hello pool-1-thread-1
+```
+
+```java
+try {
+    System.out.println("attempt to shutdown executor");
+    executor.shutdown();
+    executor.awaitTermination(5, TimeUnit.SECONDS); // Исполнитель пытается завершить работу, ожидая завершения запущенных задач в течение определенного времени (5 секунд)
+} catch (InterruptedException e) {
+    System.err.println("tasks interrupted");
+} finally {
+    if (!executor.isTerminated()) {
+        System.err.println("cancel non-finished tasks");
+    }
+    executor.shutdownNow();
+    System.out.println("shutdown finished");
+}
+```
+
+
+Callable и Future
+---
+
+
+
+
