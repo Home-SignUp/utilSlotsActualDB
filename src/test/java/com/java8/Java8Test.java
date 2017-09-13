@@ -41,6 +41,7 @@ public class Java8Test {
         int result = numbers.stream()
                 .mapToInt(value -> value*2)
                 .sorted()
+                .flatMap()
                 .sum();
         System.out.println(
                 numbers.stream()
