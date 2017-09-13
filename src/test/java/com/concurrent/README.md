@@ -13,7 +13,7 @@ http://please.noroutine.me/2011/08/atomic.html
 * [Java Concurrency - Part 6 : Atomic Variables](https://baptiste-wicht.com/posts/2010/09/java-concurrency-atomic-variables.html)
 
 
-Многопоточное программирование в Java 8
+[_Многопоточное программирование в Java 8_](https://github.com/Home-Java8/java8-tutorial)
 ---
 1. [Параллельное выполнение кода с помощью потоков](https://tproger.ru/translations/java8-concurrency-tutorial-1)
 2. [Синхронизация доступа к изменяемым объектам](https://tproger.ru/translations/java8-concurrency-tutorial-2)
