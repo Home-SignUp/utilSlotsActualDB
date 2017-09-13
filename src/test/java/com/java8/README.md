@@ -27,7 +27,7 @@ Optional:
      7. isPresent(..) — возвращает TRUE/FALSE по наличию или отсутствию объекта
      8. orElse(..) — возвращает какое-либо значение объекта либо (в случае отсутствия значения) значение по умолчанию 
      9. orElseThrow(..) — возвращает какое-либо значение объекта либо (в случае отсутствия значения) выбрасывает исключение
-    10. <VOID> ifPresent(..) — выводит на печать значение объекта (только) по наличию объекта
+    10. <VOID> ifPresent(<FunctionalInterface>) — выводит на печать значение объекта (только) по наличию объекта
 
 * https://habrahabr.ru/post/225641
 * https://habrahabr.ru/post/256057
@@ -51,7 +51,7 @@ Stream:
      7. sum() — возвращает сумму всех элементов
         min(), max(), average(), anyMatch(), allMatch(), findFirst()
      8. collect(<Collectors>) — превращает стрим в кокнретную коллекцию (например: List, Map, Set...)
-     9. <VOID> forEach(..) — проходит по списку выводит на печать значение всех объектов
+     9. <VOID> forEach(<FunctionalInterface>) — проходит по списку выводит на печать значение всех объектов
 
 * https://habrahabr.ru/post/256057
 * https://ru.stackoverflow.com/questions/561224/как-решить-задачу-с-помощью-stream-api
