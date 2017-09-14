@@ -1,16 +1,6 @@
+[Markdown support](https://daringfireball.net/projects/markdown/syntax)
 
-* [Atomic](https://habrahabr.ru/post/187854)
-* [Многопоточное программирование в Java 8. Часть третья. Атомарные переменные и конкурентные таблицы](https://tproger.ru/translations/java8-concurrency-tutorial-3)
-
-http://please.noroutine.me/2011/08/atomic.html
----
-* `AtomicInteger` (тут все ясно)
-* `AtomicLong` (тут тоже)
-* `AtomicBoolean` (яснее некуда)
-* `AtomicReference` (атомная ссылка на экземпляр чего-либо, не имеет отношения к java.lang.ref.Reference)
-
-* [Особенности Java 8 – максимальное руководство (часть 2)](http://info.javarush.ru/translation/2014/10/09/Особенности-Java-8-максимальное-руководство-часть-2-.html)
-* [Java Concurrency - Part 6 : Atomic Variables](https://baptiste-wicht.com/posts/2010/09/java-concurrency-atomic-variables.html)
+[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) ([+](http://eax.me/intellij-idea-hotkeys))
 
 
 [_Многопоточное программирование в Java 8_](https://github.com/Home-Java8/java8-tutorial) **(** [_оригинал_](https://github.com/winterbe/java8-tutorial) **)**
@@ -269,3 +259,83 @@ IntStream.range(0, 10)
  
 stop(executor);
 ```
+
+
+AtomicInteger, AtomicBoolean, AtomicLong и AtomicReference
+---
+
+    `incrementAndGet()` — является атомарной операцией
+    `updateAndGet()` — принимает в качестве аргумента лямбда-выражение и выполняет над числом заданные арифметические операции
+    `LongAdder` — (класс) альтернативы AtomicLong для последовательного сложения чисел
+    `LongAccumulator` — (класс) расширяет LongAdder, вместо простого сложения он обрабатывает входящие значения с помощью лямбды типа LongBinaryOperator
+
+полезные классы для выполнения атомарных операций `java.concurrent.atomic`
+(атомарная операция когда её можно безопасно выполнять при параллельных вычислениях в нескольких потоках не используя при этом ни блокировок ни synchronized)
+Эти инструкции работают гораздо быстрее, чем синхронизация с помощью блокировок:
+
+```java
+AtomicInteger atomicInt = new AtomicInteger(0);
+ 
+ExecutorService executor = Executors.newFixedThreadPool(2);
+ 
+IntStream.range(0, 1000)
+    .forEach(i -> executor.submit(atomicInt::incrementAndGet));
+ 
+stop(executor);
+ 
+System.out.println(atomicInt.get());    // => 1000
+```
+
+```java
+AtomicInteger atomicInt = new AtomicInteger(0);
+ 
+ExecutorService executor = Executors.newFixedThreadPool(2);
+ 
+IntStream.range(0, 1000)
+    .forEach(i -> {
+        Runnable task = () ->
+            atomicInt.updateAndGet(n -> n + 2);
+        executor.submit(task);
+    });
+ 
+stop(executor);
+ 
+System.out.println(atomicInt.get());    // => 2000
+```
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(2);
+ 
+IntStream.range(0, 1000)
+    .forEach(i -> executor.submit(adder::increment));
+ 
+stop(executor);
+ 
+System.out.println(adder.sumThenReset());   // => 1000
+```
+
+```java
+LongBinaryOperator op = (x, y) -> 2 * x + y;
+LongAccumulator accumulator = new LongAccumulator(op, 1L);
+ 
+ExecutorService executor = Executors.newFixedThreadPool(2);
+ 
+IntStream.range(0, 10)
+    .forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
+ 
+stop(executor);
+ 
+System.out.println(accumulator.getThenReset());     // => 2539
+```
+
+
+
+
+* [Atomic](https://habrahabr.ru/post/187854)
+* [Многопоточное программирование в Java 8. Часть третья. Атомарные переменные и конкурентные таблицы](https://tproger.ru/translations/java8-concurrency-tutorial-3)
+
+http://please.noroutine.me/2011/08/atomic.html
+---
+
+* [Особенности Java 8 – максимальное руководство (часть 2)](http://info.javarush.ru/translation/2014/10/09/Особенности-Java-8-максимальное-руководство-часть-2-.html)
+* [Java Concurrency - Part 6 : Atomic Variables](https://baptiste-wicht.com/posts/2010/09/java-concurrency-atomic-variables.html)
