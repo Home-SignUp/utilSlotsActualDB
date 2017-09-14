@@ -165,11 +165,107 @@ System.out.println(result);
 ```
 
 
+Интерфейс `Lock` (Синхронизация и Блокировки)
+---
+
+    `ReentrantLock` — (класс) реализует то же поведение что и обычные неявные блокировки
+    `tryLock()` — возвращает булевый результат который стоит проверить перед тем как пытаться производить какие-то действия с общими объектами
+    `lock()` — осуществляет блокировку 
+    `unlock()` — освобождаются ресурсы
+    `ReadWriteLock` — (интерфейс) блокировока отдельная для чтения и отдельная для запись
+    `StampedLock` — (появился в Java 8) в отличие от ReadWriteLock, возвращает 'штамп' — значение типа long для может использоваться в дальнейшем как для высвобождения ресурсов, так и для проверки состояния блокировки.
+                     Вдобавок у этого класса есть методы для 'оптимистичной блокировки':
+                     `tryOptimisticRead()` — блокировка для чтения
+                     `tryConvertToWriteLock()` — преобразовать блокировку для чтения в блокировку для записи не высвобождая ресурсы
+    `validate(stamp)` — проверяет является ли блокировка валидной
+
+```java
+// пример с увеличением на единицу:
+ReentrantLock lock = new ReentrantLock();
+int count = 0;
+ 
+void increment() {
+    lock.lock();
+    try {
+        count++;
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(2);
+Map<String, String> map = new HashMap<>();
+ReadWriteLock lock = new ReentrantReadWriteLock();
+ 
+executor.submit(() -> {
+    lock.writeLock().lock();
+    try {
+        sleep(1);
+        map.put("foo", "bar");
+    } finally {
+        lock.writeLock().unlock();
+    }
+});
+```
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(2);
+StampedLock lock = new StampedLock();
+ 
+executor.submit(() -> {
+    long stamp = lock.readLock();
+    try {
+        if (count == 0) {
+            stamp = lock.tryConvertToWriteLock(stamp);
+            if (stamp == 0L) {
+                System.out.println("Could not convert to write lock");
+                stamp = lock.writeLock();
+            }
+            count = 23;
+        }
+        System.out.println(count);
+    } finally {
+        lock.unlock(stamp);
+    }
+});
+ 
+stop(executor);
+```
 
 
+Семафоры
+---
+ограничивает количество потоков, которые одновременно работают над одним и тем же ресурсом:
 
 
-
-
-
-
+```java
+ExecutorService executor = Executors.newFixedThreadPool(10);
+ 
+Semaphore semaphore = new Semaphore(5);
+ 
+Runnable longRunningTask = () -> {
+    boolean permit = false;
+    try {
+        permit = semaphore.tryAcquire(1, TimeUnit.SECONDS);
+        if (permit) {
+            System.out.println("Semaphore acquired");
+            sleep(5);
+        } else {
+            System.out.println("Could not acquire semaphore");
+        }
+    } catch (InterruptedException e) {
+        throw new IllegalStateException(e);
+    } finally {
+        if (permit) {
+            semaphore.release();
+        }
+    }
+}
+ 
+IntStream.range(0, 10)
+    .forEach(i -> executor.submit(longRunningTask));
+ 
+stop(executor);
+```
