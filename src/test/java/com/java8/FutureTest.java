@@ -13,17 +13,16 @@ import javax.imageio.stream.FileImageInputStream;
 public class FutureTest {
 
     public static void main(String[] args) {
-        Scanner           in = new Scanner(System.in);
+        Scanner                in = new Scanner(System.in);
         System.out.print("Укажите базовый каталог (например, /usr/loacl/jdk/lib): ");
-        String     directory = in.nextLine();
+        String          directory = in.nextLine();
         System.out.print("Введите ключевое слово (например, volatile): ");
-        String       keyword = in.nextLine();
-        MatchCounter counter = new MatchCounter(new File(directory), keyword);
-        FutureTask<Callable>      task = new FutureTask(counter);
-        Thread             t = new Thread(task);
-        t.start();
+        String            keyword = in.nextLine();
+        MatchCounter      counter = new MatchCounter(new File(directory), keyword);
+        FutureTask<Callable> task = new FutureTask(counter);
+        new Thread(task).start();
         try {
-            System.out.println(task.get() + " файлов найдено."); //System.out.println(task.get() + " файлов найдено.");
+            System.out.println(task.get() + " файлов найдено."); //System.out.println(task.get() + " файлов найдено."); // java.lang.ClassCastException: java.io.FileInputStream cannot be cast to java.lang.Readable
         } catch(ExecutionException e){
             e.printStackTrace();
         } catch (InterruptedException e){ }
@@ -39,7 +38,6 @@ class MatchCounter implements Callable {
     private int count;
 
     /**
-     * Конструктор MatchCounter
      * @param directory Каталог, с которого начинается поиск
      * @param keyword Искомое ключевое слово
      */
@@ -60,8 +58,7 @@ class MatchCounter implements Callable {
                     MatchCounter counter = new MatchCounter(file, keyword);
                     FutureTask      task = new FutureTask(counter);
                     results.add(task);
-                    Thread             t = new Thread(task);
-                    t.start();
+                    new Thread(task).start();
                 } else {
                     if(search(file)) count++;
                 }
@@ -82,7 +79,7 @@ class MatchCounter implements Callable {
      */
     public boolean search(File file){
         try {
-            Scanner    in = new Scanner((Readable) new FileImageInputStream(file));
+            Scanner    in = new Scanner((Readable) new FileInputStream(file)); //Scanner    in = new Scanner((Readable) new FileImageInputStream(file));
             boolean found = false;
             while(!found && in.hasNextLine()){
                 String line = in.nextLine();
