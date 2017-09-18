@@ -151,3 +151,111 @@ SELECT owner_id, MAX(name)
 FROM Cat, Owner
 GROUP BY owner_id;
 ```
+
+
+[Для проведения тестирования, в Oracle 11g](https://habrahabr.ru/post/181033) **(** [+](http://bestwebit.biz.ua/sql_exersize/sql_task_group_by_01.html) **)**
+---
+
+```sql
+-- DEPARTMENT
+
+ID  | NAME
+```
+
+```sql
+-- EMPLOYEE
+
+ID  | DEPARTMENT_ID  | CHIEF_ID  | NAME  | SALARY
+```
+
+1. Вывести список сотрудников, получающих заработную плату большую чем у непосредственного руководителя:
+```sql
+-- `FROM` загружает данные в рабочую память sql (КЕШ), таким способом можно создать две разных области в рабочей памяти sql для одной и той-же таблицы
+-- одна и та же запись может описывать человека и как обычного сотрудника и как шефа, таким способом можно сказать что у сотрудника есть конкретный шеф
+SELECT e.*
+FROM employee e, employee boss
+WHERE e.CHIEF_ID = boss.ID AND boss.SALARY < e.SALARY;
+```
+
+2. Вывести список сотрудников, получающих максимальную заработную плату в своем отделе:
+```sql
+-- подзапрос выполняет выборку (список) всех сотрудников для текущего департамента из основного запроса, далее агрегаторная функция `MAX` - возвращает только одно значение - а именно найденную максимальную зарплату
+-- (поскольку `LIMIT` для агрегаторных функций не работает) а дальше по этому значению (максимальной зарплате) основной запрос делает выборку сотрудников для этого отдела
+SELECT a.*
+FROM employee a
+WHERE a.SALARY =
+    (SELECT MAX(SALARY)
+     FROM employee b
+     WHERE b.DEPARTMENT_ID = a.DEPARTMENT_ID);
+```
+или
+```sql
+SELECT NAME 
+FROM employee e  
+JOIN 
+  (SELECT DEPARTMENT_ID, MAX(SALARY) AS max_salary 
+   FROM employee
+   GROUP BY DEPARTMENT_ID) d
+  ON e.DEPARTMENT_ID = d.DEPARTMENT_ID
+where e.SALARY = d.max_salary
+```
+
+3. Вывести список ID отделов, количество сотрудников в которых не превышает 3-х человек:
+```sql
+-- группируем (`GROUP BY`) все записи по отделам
+-- с помощью агрегаторной функции подсчитываем количество записей для каждой группы, и добаляем условие поиска... 
+SELECT DEPARTMENT_ID
+FROM employee
+GROUP BY DEPARTMENT_ID
+HAVING COUNT(*) <= 3;
+```
+
+4. Вывести список сотрудников, не имеющих назначенного руководителя, работающего в том-же отделе:
+```sql
+-- загружаем и создаем две разные области в рабочей памяти sql
+-- по условию и бос и сотрудник должны быть из одного департамента
+-- (`JOIN` - позволяет выделить все пересекающиеся записи из этих двух таблиц) по условию мы ищем всех боссов которые поза областью пересечения... 
+SELECT e.*
+FROM employee e LEFT JOIN employee boss
+ON (e.CHIEF_ID = boss.ID AND e.DEPARTMENT_ID = boss.DEPARTMENT_ID)
+WHERE boss.ID IS NULL;
+```
+
+5. Найти список ID отделов с максимальной суммарной зарплатой сотрудников:
+```sql
+-- можно создать процедуру которая будет возвращать таблицу из двух полей (`WITH sum_salary AS`)... а внутри сгрупируем поля по `DEPARTMENT_ID` и вернем сумму (SALARY) для каждого департамента
+-- (поскольку `LIMIT` для агрегаторных функций не работает) в подзапросе можно вернуть максимальное значение `SALARY`, которое будет только одно, дальше по этому значение делаем выборку и возвращаем все записи которые имеют такую максимальную сумму
+-- (а в качестве альтернативной таблицы можно использовать процедуру...)
+WITH sum_salary AS
+    (SELECT DEPARTMENT_ID, SUM(SALARY) AS salary
+     FROM employee
+     GROUP BY DEPARTMENT_ID);
+
+SELECT DEPARTMENT_ID
+FROM sum_salary a
+WHERE a.salary = 
+    (SELECT MAX(salary)
+     FROM sum_salary);
+```
+или
+```sql
+-- последний подзапрос вернет таблицу, которая будет группировать и подсчитывать общую сумму `SALARY` для каждого департамента
+-- первый подзапрос вернет только одно - максимальное значение суммы `SALARY`
+-- основной запрос сгрупирует все записи по департаменту и получит сумму `SALARY` по каждому департаменту
+-- а дальше по условию если общая сумма текущего департамента равняется максимальной сумме, тогда возвращаем это...
+SELECT DEPARTMENT_ID 
+FROM employee 
+GROUP BY DEPARTMENT_ID 
+HAVING SUM(SALARY) = 
+  (SELECT MAX(sum_salary) 
+   FROM
+    (SELECT DEPARTMENT_ID, SUM(SALARY) AS sum_salary 
+     FROM employee 
+     GROUP BY DEPARTMENT_ID)
+  )
+```
+
+
+
+
+
