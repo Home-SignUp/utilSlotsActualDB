@@ -53,7 +53,7 @@ wsimport -d d:\Idea\Mine\SoapBlogPost\src\ http://speller.yandex.net/services/sp
 
 http://khpi-iip.mipk.kharkiv.edu/library/sotii/labs/lab_soap_create.html
 http://info.javarush.ru/eGarmin/2015/03/28/Без-пафоса-Поговорим-о-JavaEE-сервлетах-и-их-контейнерах.html
-http://javastudy.ru/web-services/soap-java-hello-world-example
+[SOAP HelloWorld](http://javastudy.ru/web-services/soap-java-hello-world-example)
 http://axis.apache.org/axis/java/user-guide.html
 https://habrahabr.ru/post/131343
 http://citforum.ru/internet/xml/xml_rpc
