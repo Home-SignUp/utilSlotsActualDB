@@ -13,7 +13,10 @@ https://gist.github.com/asilchev/3742724
 http://ru.khroliz.com/2013/07/java-soap.html
 http://info.javarush.ru/eGarmin/2015/03/14/Веб-сервисы-Шаг-1-Что-такое-веб-сервис-и-как-с-ним-работать-.html
 http://info.javarush.ru/eGarmin/2015/03/22/Веб-сервисы-Шаг-2-Как-упростить-написание-клиента-.html
+[JAX-WS-HelloWorld-RPC-Example](https://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example)
 
+[SOAP работает с операциями, а REST – с ресурсами](https://habrahabr.ru/post/131343)
+---
 * `SOAP` — это протокол для работы публичных веб-сервисов (чтобы обеспечить удобство и надёжность обмена, и чтобы клиент не парился на чём написан сервер, или как паковать в строки параметры...);
 >           (все, что мы хотим куда-то отправить через HTTP, сначала превращается в XML описание SOAP, потом засовывается в HTTP пакет и посылается на другой компьютер в сети по TCP/IP)
 >           Есть 2-е версии протокола: `WSDL 1.1` и `WSDL 1.2`
@@ -47,5 +50,11 @@ wsimport -d d:\Idea\Mine\SoapBlogPost\src\ http://speller.yandex.net/services/sp
 
 
 
+
 http://khpi-iip.mipk.kharkiv.edu/library/sotii/labs/lab_soap_create.html
+http://info.javarush.ru/eGarmin/2015/03/28/Без-пафоса-Поговорим-о-JavaEE-сервлетах-и-их-контейнерах.html
+http://javastudy.ru/web-services/soap-java-hello-world-example
+http://axis.apache.org/axis/java/user-guide.html
+https://habrahabr.ru/post/131343
+http://citforum.ru/internet/xml/xml_rpc
 
