@@ -58,3 +58,8 @@ http://axis.apache.org/axis/java/user-guide.html
 https://habrahabr.ru/post/131343
 http://citforum.ru/internet/xml/xml_rpc
 
+https://www.ibm.com/developerworks/ru/library/j-jws12/index.html
+[cxf-example](https://github.com/ExampleDriven/cxf-example/blob/master/src/main/webapp/WEB-INF/web.xml)
+[Как поднять CXF Servlet](http://dev-blogs.com/cxfservlet)
+
+
