@@ -49,7 +49,14 @@ wsimport -d d:\Idea\Mine\SoapBlogPost\src\ http://speller.yandex.net/services/sp
 * `WS-Policy` — с помощью которого можно управлять правами на использование сервиса;
 
 
-
+[SOAP-Tutorial](https://github.com/Home-SOAP/tutorial)
+---
+0. библиотека (SOAP) JAX-WS уже включена в JDK + (для мавен проекта подключаем депенденци: 'com.sun.xml.ws' & 'jaxws-rt')
+1. нужно объявить интерфейс нашего веб-сервиса с его методами (@WebService, @WebMethod, @SOAPBinding)  
+2. нужно написать его реализацию + указываем 'endpointInterface' для нашей реализации ыеб-сервиса
+3. в 'web.xml' прописываем <listener> 'WSServletContextListener' + указываем нашу имплеиентацию веб-сервиса <endpoint .../>
+4. запускаем наш веб-сервис и генерим сервисные классы для нашего клиента с помощью утилиты 'wsimport' из JDK
+5. (вставляем эти сгенерированные классы в наш клиент и пользуемся...)
 
 http://khpi-iip.mipk.kharkiv.edu/library/sotii/labs/lab_soap_create.html
 http://info.javarush.ru/eGarmin/2015/03/28/Без-пафоса-Поговорим-о-JavaEE-сервлетах-и-их-контейнерах.html
