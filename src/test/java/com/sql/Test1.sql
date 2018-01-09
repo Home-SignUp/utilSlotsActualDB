@@ -60,14 +60,65 @@ DELETE FROM Tbl
 
 
 
-
+-- Использование скалярных выражений
 SELECT TNAME, KOL, PRICE, "=" AS EQU, KOL*PRICE AS SUMMA
   FROM Tbl;
 
+-- Упорядочение результатов запроса
 SELECT PNUM, DNUM, VOLUME
   FROM Tbl
   ORDER BY DNUM;
 
+-- Упорядочение результатов запроса по нескольким полям с возрастанием или убыванием
 SELECT PNUM, DNUM, VOLUME
   FROM Tbl
   ORDER BY DNUM ASC, VOLUME DESC;
+
+-- соединение таблиц
+SELECT Tbl1.PNUM, Tbl1.PNAME, Tbl2.DNUM, Tbl2.VOLUME
+  FROM Tbl1, Tbl2
+  WHERE Tbl1.PNUM = Tbl2.PNUM;
+
+-- Использование агрегатных функций в запросах
+SELECT COUNT(*) AS N
+  FROM Tbl;
+
+SELECT
+    SUM(VOLUME) AS SM,
+    MAX(VOLUME) AS MX,
+    MIN(VOLUME) AS MN,
+    AVG(VOLUME) AS AV
+  FROM Tbl;
+
+-- Использование агрегатных функций с группировками
+SELECT DNUM, SUM(VOLUME) AS SM
+  FROM Tbl
+  GROUP BY DNUM;
+
+SELECT DNUM, SUM(VOLUME) AS SM
+  FROM Tbl
+  GROUP BY DNUM
+  HAVING SUM(VOLUME) > 400;
+
+-- Использование подзапросов
+SELECT *
+  FROM Tbl1
+  WHERE Tbl1.PNUM IN
+      (SELECT DISTINCT Tbl2.PNUM
+       FROM Tbl2
+       WHERE Tbl2.DNUM = 2);
+
+-- объединение двух подзапросов
+SELECT PNAME
+  FROM Tbl
+  WHERE STATUS > 3
+UNION
+  SELECT Tbl1.PNAME
+  FROM Tbl1, Tbl2
+  WHERE Tbl1.PNUM = Tbl2.PNUM AND Tbl2.DNUM = 2;
+
+
+
+
+
+
