@@ -35,13 +35,14 @@ public class Java8Test2 {
 
         ////////////////////////////////////////////////////////////////////////////////////
         /**
-         * Есть 'терминальные методы' которые ничего НЕврзвращают:
+         * Есть 'терминальные методы' которые ничего НЕвозвращают:
          * ifPresent, forEach
          *
          * Есть 'терминальные методы' которые возвращают:
          * - min, max, average, findFirst, findAny  // Optional
          * - sum, count                             // примитивные типы Java
          * - collect                                // List
+         * - reduce                                 // Object
          */
         OptionalInt min = Stream.of(22, 2, 1, 33, 0).mapToInt(Integer::valueOf)
                 .min(); // Optional
@@ -139,7 +140,7 @@ public class Java8Test2 {
      * @see https://javadevblog.com/polnoe-rukovodstvo-po-java-8-stream.html
      *      ****************************************************************
      *      Терминальные (продвинутые) операции:
-     *      collect, reduce, flatMap
+     *      COLLECT, reduce
      */
     @Test
     public void testCollect() {
@@ -185,7 +186,7 @@ public class Java8Test2 {
      * @see https://javadevblog.com/polnoe-rukovodstvo-po-java-8-stream.html
      *      ****************************************************************
      *      Терминальные (продвинутые) операции:
-     *      collect, reduce, flatMap
+     *      collect, REDUCE
      */
     @Test
     public void testReduce() {
@@ -229,6 +230,12 @@ public class Java8Test2 {
         System.out.println(ages); // 108
     }
 
+    /**
+     * @see https://javadevblog.com/polnoe-rukovodstvo-po-java-8-stream.html
+     *      ****************************************************************
+     *      Промежуточные (продвинутые) операции:
+     *      FLATMAP
+     */
     @Test
     public void testFlatMap() {
         /**
