@@ -37,4 +37,43 @@ public class JavaTest3 {
         for (String[] a2: arr2) System.out.print(a2[0] + "..." + a2[1] + ",  ");
     }
 
+
+
+    interface A {}
+
+    interface AA {
+        int a();
+    }
+
+    interface AAA {
+        default int a() {
+            return 0;
+        }
+    }
+
+    static interface AAAA {} // МОЖНО делать интерфейс static
+//    final interface AAAAA {} // НЕЛЬЗЯ делать интерфейс final
+
+//    // поля внутри интерфейса являются final
+//    interface AAAAAA {
+//        int a;
+//
+//        class X {
+//            public X() {
+//                a = 100;
+//            }
+//        }
+//    }
+
+    abstract class B {}
+
+    abstract class BB {
+        abstract int a();
+    }
+
+    abstract class BBB {
+        int a() {
+            return 0;
+        }
+    }
 }
