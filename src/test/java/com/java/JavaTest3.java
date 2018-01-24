@@ -1,6 +1,5 @@
 package com.java;
 
-import com.win.utility.model.User;
 import org.junit.Test;
 
 import java.util.*;
@@ -53,6 +52,49 @@ public class JavaTest3 {
         System.out.println(users);
     }
 
+    /**
+     * @see https://www.mkyong.com/java/how-to-convert-list-to-set-arraylist-to-hastset
+     */
+    @Test
+    public void test2() {
+        ////////////////////////////////////////
+        List<Integer> rolles = Arrays.asList(new Integer[]{0,1,2,3,4,5,6,7,8,9,0,});
+
+        System.out.println(rolles);
+
+        Collections.shuffle(rolles);
+//        rolles.remove(0); // java.lang.UnsupportedOperationException
+        System.out.println(rolles);
+
+        List<Integer> newRolles = rolles.subList(0,6);
+        System.out.println(newRolles);
+
+//        Collections.shuffle(rolles);
+//        rolles.remove(0);
+//        System.out.println(rolles);
+//
+//        Collections.shuffle(rolles);
+//        rolles.remove(0);
+//        System.out.println(rolles);
+
+        Set<Integer> set = new HashSet<>(rolles);
+        System.out.println(set);
+    }
+
+    @Test
+    public void testRandom() {
+        List<?> rolles = Arrays.asList(new Integer[]{0,1,2,3,4,5,6,7,8,9,0,0,1,2,3,4,5,});
+
+        System.out.println( getRandom(new HashSet<>(rolles)) );
+    }
+
+    private List<?> getRandom(Set<?> set) {
+//        List<Integer> collection = (List) set; // java.lang.ClassCastException: java.util.HashSet cannot be cast to java.util.List
+        List<?> collection = new ArrayList<>(set);
+        Collections.shuffle(collection);
+        return collection.subList(0,6);
+    }
+
     class MyUser {
         private int age;
         private String name;
@@ -93,6 +135,7 @@ public class JavaTest3 {
 
     interface AA {
         int a();
+//        static int b(); // НЕЛЬЗЯ делать интерфейсный метод static
     }
 
     interface AAA {
@@ -126,4 +169,10 @@ public class JavaTest3 {
             return 0;
         }
     }
+
+    abstract class BBBB {
+//        static abstract int a(); // НЕЛЬЗЯ делать абстрактный метод static (для абстрактного класса)
+//        static int b() { // и НЕЛЬЗЯ делать обычный метод static (для абстрактного класса)
+//            return 0;
+//        }
 }
