@@ -134,6 +134,8 @@ public class JavaTest3 {
     interface A {}
 
     interface AA {
+        int a1 = 0; // для интерфейса все поля являются static finul (по умолчанию)
+        static int a2 = 0;
         int a();
 //        static int b(); // НЕЛЬЗЯ делать интерфейсный метод static
     }
@@ -171,8 +173,12 @@ public class JavaTest3 {
     }
 
     abstract class BBBB {
+        int a1; // МОЖНО делать обычное поле (для абстрактного класса)
+        final int a2 = 0; // МОЖНО делать поле final (для абстрактного класса)
+//        static int a3; // НЕЛЬЗЯ делать поле static (для абстрактного класса)
 //        static abstract int a(); // НЕЛЬЗЯ делать абстрактный метод static (для абстрактного класса)
 //        static int b() { // и НЕЛЬЗЯ делать обычный метод static (для абстрактного класса)
 //            return 0;
 //        }
+    }
 }
