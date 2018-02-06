@@ -20,6 +20,12 @@ public class MyHeritageTest {
 
         A = new int[]{-1, -3}; // 1
         System.out.println( solution0(A) );
+
+        //////////////////////////////
+        List<Integer> intList = null;
+
+        intList.stream().mapToInt(i->i).toArray();            // конвертировать:  List<Integer> -> int[]
+        IntStream.of(A).boxed().collect(Collectors.toList()); // конвертировать:  int[] -> List<Integer>
     }
 
     /**
@@ -101,10 +107,10 @@ public class MyHeritageTest {
     private int[] solution1(int N) {
         int num1 = (N/2) - N;
         int num2 = num1 + N;
-        List<Integer> list = IntStream.range(num1, num2).boxed().collect(Collectors.toList());
+        List<Integer> intList = IntStream.range(num1, num2).boxed().collect(Collectors.toList());
 
-        Collections.shuffle(list);
-        return list.stream().mapToInt(i->i).toArray();
+        Collections.shuffle(intList);
+        return intList.stream().mapToInt(i->i).toArray();
     }
 
     /**
