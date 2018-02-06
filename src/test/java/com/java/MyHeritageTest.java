@@ -1,7 +1,5 @@
 package com.java;
 
-import com.google.inject.internal.util.ImmutableList;
-import com.google.inject.internal.util.Lists;
 import org.junit.Test;
 
 import java.util.*;
