@@ -12,7 +12,7 @@ Java 8 CompletableFuture
 * [Часть 1](https://vertex-academy.com/tutorials/ru/java-8-completablefuture)
 * [Часть 2](https://vertex-academy.com/tutorials/ru/java-8-completablefuture-part-2)
 * [Часть 3](https://vertex-academy.com/tutorials/ru/java-8-completablefuture-chast-3)
-
+* [JPoint2015_Chuyko](https://github.com/Home-GWT/TopLinkExample/blob/master/docs/JPoint2015_Chuyko.pdf) **(** [JPoint2015_Chuyko](http://2015.jpoint.ru/presentations/JPoint2015_Chuyko.pdf) **)**
 
 `Future` и `Promise` — это примитивы для создания многопоточных приложений
 Результатом любого вычисления является значение. Это значение можно поместить в некий абстрактный контейнер (такой контейнер является immutable)...
