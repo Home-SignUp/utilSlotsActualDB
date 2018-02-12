@@ -1,6 +1,7 @@
-[Markdown support](https://daringfireball.net/projects/markdown/syntax)
+[Markdown support](https://daringfireball.net/projects/markdown/syntax) **|** [Markdown generator](https://www.tablesgenerator.com/markdown_tables) **(** [+](https://meta.stackexchange.com/questions/73566/is-there-markdown-to-create-tables) **)**
 
-[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) ([+](http://eax.me/intellij-idea-hotkeys))
+[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) **(** [+](http://eax.me/intellij-idea-hotkeys) **)**
+
 
 Java 8 CompletableFuture
 ---
