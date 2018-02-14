@@ -38,6 +38,9 @@ Java 1
 Java 5
 ---
 
+![](3.biS9hX.jpg)
+![](4.pvW4gr.jpg)
+
 * `Executors` (`newSingleThreadExecutor`, `newFixedThreadPool`, `newWorkStealingPool`) — пулы потоков
 
 I. Исполнители
@@ -77,9 +80,6 @@ III. Атомарные операции
 
 > `LongAdder` — (альтернатива `AtomicLong`)
 > `LongAccumulator` — (расширяет `LongAdder`)
-
-![](3.biS9hX.jpg)
-![](4.pvW4gr.jpg)
 
 
 Java 7
