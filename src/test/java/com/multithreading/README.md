@@ -182,6 +182,8 @@ Java 8
 
 ![CompletableFuture](15.cZQ8LX.jpg)
 
+![](17.CIB7ZD.jpg)
+
 * [CompletableFuture](https://github.com/Home-SignUp/utilSlotsActualDB/blob/master/src/test/java/com/java8/thread/README.md)
 
 
@@ -230,10 +232,11 @@ Java 8
 ![](11.aIDLRW.jpg)
 ![](12.jpkHmS.jpg)
 
+`AnyOf` — нахождение первого освободившегося потока чтобы передать ему очередную задачу
 ![](13.5uMJhr.jpg)
-![](14.Zy5TbM.jpg)
 
-![](17.CIB7ZD.jpg)
+`applyToEither` — нахождение первого освободившегося потока чтобы передать ему очередную задачу И выполнить еще что-то
+![](14.Zy5TbM.jpg)
 
 
 Поддержка асинхронности в технологиях Java
