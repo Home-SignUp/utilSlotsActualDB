@@ -168,8 +168,8 @@ Java 8
 ![](5.e5QW3v.jpg)
 ![](6.X9xovf.jpg)
 ![](8.kcPi0L.jpg)
-![](9.df15zW.jpg)
 
+![](9.df15zW.jpg)
 ![](10.TX34uC.jpg)
 ![](11.aIDLRW.jpg)
 ![](12.jpkHmS.jpg)
