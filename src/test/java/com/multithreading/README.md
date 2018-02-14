@@ -174,8 +174,6 @@ Java 8
 ![](12.jpkHmS.jpg)
 ![](13.5uMJhr.jpg)
 ![](14.Zy5TbM.jpg)
-![](15.cZQ8LX.jpg)
-![](16.oyR09P.jpg)
 ![](17.CIB7ZD.jpg)
 
 
