@@ -8,7 +8,7 @@
 Java 1
 ---
 
-* `Runable`, `Thread`
+* [Runable, Thread](https://github.com/Home-GWT/TopLinkExample/blob/master/src/com/voituk/jpaexample/JPAExample.java#L1075) **(** [1](http://developer.alexanderklimov.ru/android/java/thread.php) **|** [2](https://habrahabr.ru/post/164487) **)**
 
 
 Java 5
