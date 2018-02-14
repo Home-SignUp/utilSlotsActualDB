@@ -1,62 +1,29 @@
-[Markdown support](https://daringfireball.net/projects/markdown/syntax)
+[Markdown support](https://daringfireball.net/projects/markdown/syntax) **|** [Markdown generator](https://www.tablesgenerator.com/markdown_tables) **(** [+](https://meta.stackexchange.com/questions/73566/is-there-markdown-to-create-tables) **)**
 
-[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) ([+](http://eax.me/intellij-idea-hotkeys))
+[Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) **(** [+](http://eax.me/intellij-idea-hotkeys) **)**
 
 
-[(Java 8) Optional — избавьтесь от null-проверок](https://examples.javacodegeeks.com/core-java/util/optional/java-8-optional-example)
+![Многопоточность в Java](1.2DhUjM.jpg)
+
+Java 1
 ---
-     Optional — это контейнер объекта, который может содержать или не содержать ненулевое значение.
-                 Класс Optional призванный помочь разработчикам в обработке NullPointerException.
-                 Можно вообще запретить назначать тем или иным полям класса значения равные null.
-                 Java не запрещает делать этого, но с Optional это становится немного удобнее и нагляднее.
 
-Optional:
+* `Runable`, `Thread`
 
-    ПРОМЕЖУТОЧНЫЕ МЕТОДЫ (возвращают Optional)
-    --------------------[ статические ]
-     1. empty() — создает пустой объект (типа обвертка)
-     2. of(..) — создает объект (не пустой) со значением
-     3. ofNullable(..) — создает объект с проверкой на NULL (или пустой или со значением)
-     --------------------[ объектные ]
-     4. filter(<FunctionalInterface>) — условие по которому выполняется поиск (проверка) объекта
-     5. map(<FunctionalInterface>) — преобразовывает (связывает) объект с ключем и возвращает ключ этого объекта
-      
-    ТЕРМИНАЛЬНЫЕ МЕТОДЫ
-    -------------------[ объектные ]
-     6. get() — возвращает сам объект
-     7. isPresent(..) — возвращает TRUE/FALSE по наличию или отсутствию объекта
-     8. orElse(..) — возвращает какое-либо значение объекта либо (в случае отсутствия значения) значение по умолчанию 
-     9. orElseThrow(..) — возвращает какое-либо значение объекта либо (в случае отсутствия значения) выбрасывает исключение
-    10. <VOID> ifPresent(<FunctionalInterface>) — выводит на печать значение объекта (только) по наличию объекта
 
-* https://habrahabr.ru/post/225641
-* https://habrahabr.ru/post/256057
-
-[Что Java 8 нам готовит](https://habrahabr.ru/post/203026)
+Java 5
 ---
-Stream:
 
-    ПРОМЕЖУТОЧНЫЕ МЕТОДЫ (возвращают stream)
-    --------------------[ объектные ]
-     1. stream() — создает стрим
-     2. filter(<FunctionalInterface>) — условие по которому выполняется поиск (проверка) объекта
-     3. map(<FunctionalInterface>) — преобразовывает данных из одного типа потока в другой (например из 'Stream' в 'Collection')
-                                    + выполняет подстановку (изменение) значения для отжельно-каждого элемента... 
-     4. mapToInt(<FunctionalInterface>) — тоже самое что и 'map', только работает со значением для конкретного числового типа (явно указаного) и имеет специальные-дополнительные арфиметичнские методы (пример: 'sum()', min(), max(), average(), allMath(..), anyMath(..)...)
-        mapToLong, mapToFloat, ... 
-     5. flatMap(<FunctionalInterface>) — тоже самое что и 'map', только превращает (контенирует) все списки в один список
-     6. sorted() — сортирует
-      
-    ТЕРМИНАЛЬНЫЕ МЕТОДЫ
-    -------------------[ объектные ]
-     7. sum() — выполняет арифметические операции и возвращает сумму всех элементов
-        min(), max(), average(), anyMatch(), allMatch(), findFirst() — тоже что и 'sum()' выполняет арифметические операции...  
-     8. collect(<Collectors>) — превращает стрим в кокнретную коллекцию (например: List, Map, Set...) и возвращает коллекцию
-     9. <VOID> forEach(<FunctionalInterface>) — выводит на печать в цикле значение всех элементов стрима...
-
-* https://habrahabr.ru/post/256057
-* https://ru.stackoverflow.com/questions/561224/как-решить-задачу-с-помощью-stream-api
-
-    
+* `Executors` (`newSingleThreadExecutor`, `newFixedThreadPool`, `newWorkStealingPool`)
 
 
+Java 7
+---
+
+* `ForkJoinPool` (`ForkJoinPool.commonPool`)
+
+
+Java 8
+---
+
+* `CompletableFuture`
