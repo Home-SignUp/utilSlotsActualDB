@@ -69,7 +69,7 @@ III. Атомарные операции
 Java 7
 ---
 
-* `ForkJoinPool` (`ForkJoinPool.commonPool`)
+* [ForkJoinPool](jeeconf-May2012-forkjoin.pdf) **(** `ForkJoinPool.commonPool` **)**
 
 
 Java 8
