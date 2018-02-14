@@ -131,7 +131,7 @@ III. Атомарные операции
 Java 7
 ---
 
-* [ForkJoinPool](jeeconf-May2012-forkjoin.pdf) **(** `ForkJoinPool.commonPool` **)**
+* [ForkJoinPool](jeeconf-May2012-forkjoin.pdf) **(** `ForkJoinPool.commonPool` **)** — принцип разделяй и властвуй
 
 ![Fork&Join](1.Fw3ajz.jpg)
 
