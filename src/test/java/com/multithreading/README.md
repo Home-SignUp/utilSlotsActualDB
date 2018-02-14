@@ -150,11 +150,6 @@ Java 8
      (где *future* исполнится в `ForkJoinPool.commonPool()`, так как мы не указывали ему *Executor*. Если мы хотим указать где будет исполняться *future* то передаем `Executor` вторым параметром)
   2. Для того чтобы получить результат с CompletableFuture необходимо вызвать метод: `get`
   3. навешать callbacks-методы, которые принимают какие-то значения: `thenAccept`; `thenRun`; `exceptionally`; `handle`;
-```javascript
-    CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hi");
-    future.thenAccept(result -> System.out.println(result));
-    future.get();
-```
   4.
     трансформация: `thenApply` (добавление нескольких `callback`);
     композиция: `thenCompose` (сценарий каких-то последовательных действий);
@@ -167,8 +162,26 @@ Java 8
     1. если метод НЕ '..Async' - то он выполняется в том же потоке где выполнился код который завершил Future
     2. если метод '..Async' - то он выполняется: либо в каком-то пуле потоков ('ForkJoinPool.commonPool');  либо в переданном 'Executor';
 
+![](3.biS9hX.jpg)
+![](4.pvW4gr.jpg)
+![](5.e5QW3v.jpg)
+![](6.X9xovf.jpg)
+![](7.C0q42G.jpg)
+![](8.kcPi0L.jpg)
+![](9.df15zW.jpg)
+![](10.TX34uC.jpg)
+![](11.aIDLRW.jpg)
+![](12.jpkHmS.jpg)
+![](13.5uMJhr.jpg)
+![](14.Zy5TbM.jpg)
+![](15.cZQ8LX.jpg)
+![](16.oyR09P.jpg)
+![](17.CIB7ZD.jpg)
+
 
 Поддержка асинхронности в технологиях Java
 ---
 
 ![Поддержка асинхронности в технологиях Java](19.IsoaV1.jpg)
+
+![](18.HhmjVY.jpg)
