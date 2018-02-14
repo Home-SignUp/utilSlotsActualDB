@@ -27,7 +27,7 @@ Java 1
 Java 5
 ---
 
-* `Executors` (`newSingleThreadExecutor`, `newFixedThreadPool`, `newWorkStealingPool`)
+* `Executors` (`newSingleThreadExecutor`, `newFixedThreadPool`, `newWorkStealingPool`) — пулы потоков
 
 
 I. Исполнители
@@ -81,7 +81,7 @@ Java 7
     С головой очереди может работать только владелец (стек LIFO).
     А из хвоста могут красть задачи другие потоки + и владелец (стек FIFO).
 
-- `ForkJoinPool` — расширяет интерфейс `ExecutorService` (который наследуется от `Executor`) и может принимать параметры типа `Runable` и `Callable`
+- `java.util.concurrent.ForkJoinPool` — расширяет интерфейс `ExecutorService` (который наследуется от `Executor`) и может принимать параметры типа `Runable`, `Callable` и `ForkJoinTask`
 
 - `fork()` — кладет задачу в очередь и потом возвращает ее (когда задача закончит выполнятся)
 - `join()` — блокирует очередь, пока эта задача не закончит выполнятся 
