@@ -7,6 +7,17 @@
 
 * [java 8 многопоточность](https://urvanov.ru/2016/05/27/java-8-многопоточность)
 
+** (Completable Future: Есть ли Future у Java? (Денис Анфертьев, Jet Infosystems)) https://www.youtube.com/watch?v=8EoINS1Kacs
+* (Java 8 CompletableFuture. Часть 1) https://vertex-academy.com/tutorials/ru/java-8-completablefuture << https://vertex-academy.com/tutorials/ru/java-8-uchebnik
+*  (Алексей Шипилёв — ForkJoinPool в Java 8) https://www.youtube.com/watch?v=t0dGLFtRR9c >> https://shipilev.net/talks/jeeconf-May2012-forkjoin.pdf
+** (Асинхронное программирование в Java 8) https://www.youtube.com/watch?v=yBF9VRiGkik
+. (Дмитрий Чуйко — CompletableFuture. Хочется взять и применить) https://www.youtube.com/watch?v=hqR41XVx3kM
+. (Пользовательский пул потоков в параллельном потоке Java 8) http://qaru.site/questions/27386/custom-thread-pool-in-java-8-parallel-stream (https://stackoverflow.com/questions/21163108/custom-thread-pool-in-java-8-parallel-stream)
+* (Часть II. Библиотека Java) https://studfiles.net/preview/2100165/page:91/
+http://levin-matveev.livejournal.com/85821.html
+** (Java 8 многопоточность ** Fork/Join Framework) https://urvanov.ru/2016/05/27/java-8-многопоточность
+* (Java 8) http://jug.ua/wp-content/uploads/2011/12/Java8_Ciklum.pdf
+
 
 Java 1
 ---
