@@ -40,7 +40,6 @@ Java 5
 
 * `Executors` (`newSingleThreadExecutor`, `newFixedThreadPool`, `newWorkStealingPool`) — пулы потоков
 
-
 I. Исполнители
 
 > `Callable` — это задачи которые могут быть переданы исполнителям (типа `Runnable`), но (в отличие от `Runnable`) `Callable` может возвращать значение.
@@ -78,6 +77,9 @@ III. Атомарные операции
 
 > `LongAdder` — (альтернатива `AtomicLong`)
 > `LongAccumulator` — (расширяет `LongAdder`)
+
+![](3.biS9hX.jpg)
+![](4.pvW4gr.jpg)
 
 
 Java 7
@@ -162,9 +164,6 @@ Java 8
     1. если метод НЕ '..Async' - то он выполняется в том же потоке где выполнился код который завершил Future
     2. если метод '..Async' - то он выполняется: либо в каком-то пуле потоков ('ForkJoinPool.commonPool');  либо в переданном 'Executor';
 
-![](3.biS9hX.jpg)
-![](4.pvW4gr.jpg)
-
 ![](5.e5QW3v.jpg)
 ![](6.X9xovf.jpg)
 ![](8.kcPi0L.jpg)
@@ -175,6 +174,7 @@ Java 8
 ![](12.jpkHmS.jpg)
 ![](13.5uMJhr.jpg)
 ![](14.Zy5TbM.jpg)
+
 ![](17.CIB7ZD.jpg)
 
 
