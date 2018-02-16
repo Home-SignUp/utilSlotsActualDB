@@ -3,6 +3,22 @@
 [Хоткеи в IntelliJ-IDEA](https://juja.com.ua/java/ide/intellij-idea-hotkeys) **(** [+](http://eax.me/intellij-idea-hotkeys) **)**
 
 
+Для **Java 1** в многопоточности ключевыми элементами являются:
+- тело функции `Runnable.run()` 
+- и тело цыкла `while (BOOLEAN)`
+Условием синхронизации может являться: либо просто объект, либо список...
+Существует: `основной поток` и остальные `второстепенные потоки`.
+Как только в теле этого цыкла выполнится условие синхронизации - тогда в этом случае можно усыпить второстепенный поток.
+И разбудить этот второстепенный поток можно с помощью явного вызова, например: через другую функцию...
+
+Для **Java 8** в многопоточности ключевыми элементами являются:
+- объекты типа `Callable` 
+- и call-backs методы: `CompletableFuture.thenAccept`, `CompletableFuture.thenRun`, `CompletableFuture.exceptionally`
+В **Java 8** можно комбинировать управления этими call-backs методами, чтобы максимально нагрузить процессорное время (без простоя ожидания завершения...) для достижения максимальной производительности.
+С помощью асинхронных методов, еапример: `CompletableFuture.thenApplyAsync`, `CompletableFuture.thenComposeAsync`, `CompletableFuture.thenCombineAsync`, `CompletableFuture.anyOf` или `CompletableFuture.applyToEither`
+(собственно блокировка потоков строится именно с помощью комбинаций call-backs методов)
+
+
 ![Многопоточность в Java](1.2DhUjM.jpg)
 
 * [java 8 многопоточность](https://urvanov.ru/2016/05/27/java-8-многопоточность)
